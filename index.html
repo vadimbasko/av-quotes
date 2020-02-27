@@ -34,7 +34,7 @@
     }
 
     const full = params.get('full');
-    if (apikey && full) getRate('usd-rub');
+    if (apikey && !full) getRate('usd-rub');
     if (apikey && full) ['usd-rub', 'eur-rub', 'eur-usd'].forEach(getRate);
 
 </script>
