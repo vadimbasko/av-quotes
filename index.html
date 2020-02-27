@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alpha Vantage Quotes</title>
+</head>
+<body>
+    <div>USDRUB</div>
+    <div id="usd-rub-rate"></div>
+    <br>
+    <div>EURRUB</div>
+    <div id="eur-rub-rate"></div>
+    <br>
+    <div>EURUSD</div>
+    <div id="eur-usd-rate"></div>
+</body>
+
+<script type="application/javascript">
+
+    const params = new URLSearchParams(new URL(window.location.href).search);
+    const apikey = params.get('apikey');
+
+    function getRate(id) {
+        const [fr, to] = id.split('-');
+        const url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE` +
+            `&from_currency=${fr.toUpperCase()}&to_currency=${to.toUpperCase()}&apikey=${apikey}`;
+
+        const xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", url, false ); // false for synchronous request
+        xmlHttp.send( null );
+        console.log('full result', id, xmlHttp.responseText);
+        const result = JSON.parse(xmlHttp.responseText);
+        document.getElementById(`${id}-rate`).innerText = Object.values(Object.values(result)[0])[4];
+    }
+
+    if (apikey) ['usd-rub', 'eur-rub', 'eur-usd'].forEach(getRate);
+
+</script>
+
+</html>
