@@ -33,7 +33,11 @@
         document.getElementById(`${id}-rate`).innerText = Object.values(Object.values(result)[0])[4];
     }
 
-    if (apikey) ['usd-rub', 'eur-rub', 'eur-usd'].forEach(getRate);
+    const full = params.get('full');
+
+    if (apikey && !full) getRate('usd-rub');
+
+    if (apikey && full) ['usd-rub', 'eur-rub', 'eur-usd'].forEach(getRate);
 
 </script>
 
