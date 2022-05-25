@@ -13,6 +13,9 @@
     <br>
     <div>EURUSD</div>
     <div id="eur-usd-rate"></div>
+    <br>
+    <div>USDGEL</div>
+    <div id="usd-gel-rate"></div>
 </body>
 
 <script type="application/javascript">
@@ -35,7 +38,7 @@
 
     const full = params.get('full');
     if (apikey && full == null) getRate('usd-rub');
-    if (apikey && full != null) ['usd-rub', 'eur-rub', 'eur-usd'].forEach(getRate);
+    if (apikey && full != null) ['usd-rub', 'eur-rub', 'eur-usd', 'usd-gel'].forEach(getRate);
 
 </script>
 
